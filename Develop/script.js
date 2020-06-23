@@ -12,7 +12,7 @@ function writePassword() {
 // This is my prompts for the password
 function generatePassword() {
   alert ("Please choose your password criteria from the following");
-  var lengthPassword = prompt("Please select your password length, it must be between 8-128 characters");
+  var lengthPassword = parseInt(prompt("Please select your password length, it must be between 8-128 characters"));
   var wantSpecialCharacter = confirm("Do you want a special character?");
   var wantLowerCase = confirm("Do you want a lowercase character?");
   var wantUpperCase = confirm("Do you want an uppercase character?");
@@ -22,7 +22,8 @@ function generatePassword() {
 
   var characters = ["!@#$%^&*", "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "1234567890"];
 
-  // This is my if/else options
+  // My if statements mean that if they select one of the below, it will add that character to what can be used in password
+  var masterString = ""
 
   if (wantSpecialCharacter) {
     masterString += characters[0];
@@ -37,6 +38,15 @@ function generatePassword() {
     masterString += characters[3]
   }
   
+  console.log(masterString)
+// Final password is made using randomly selected characters from length of master string above
+  var finalPassword = ""
+  
+  for (var i = 0; i < lengthPassword; i++) {
+    finalPassword += masterString.charAt (Math.floor(Math.random() * masterString.length))
+  }
+// the return is telling our function what the end result is based on the selections 
+  return finalPassword
 }
 
 
